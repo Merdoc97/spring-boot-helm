@@ -18,18 +18,6 @@ global:
           target:
             type: Utilization
             averageUtilization: 50
-    behavior:
-      scaleDown:
-        stabilizationWindowSeconds: 120
-        policies:
-          - type: Percent
-            value: 20
-            periodSeconds: 60
-      scaleUp:
-        policies:
-          - type: Percent
-            value: 80
-            periodSeconds: 30
   datasource:
     migration:
       # flag to enable disable datasource migration hook for more info look at migration hook file

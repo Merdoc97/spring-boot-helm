@@ -3,7 +3,18 @@ entries:
   base-chart:
   - apiVersion: v2
     appVersion: 0.0.1
-    created: "2024-09-06T18:33:47.7280921+02:00"
+    created: "2024-09-06T18:37:42.1765917+02:00"
+    description: A Base chart for spring boot applications
+    digest: bcc9054483cf8baa69f79bb78e5a5fc516bbc0b116fc35fb94f178ba93de32c6
+    kubeVersion: '>=1.15.3'
+    name: base-chart
+    type: application
+    urls:
+    - base-chart-0.0.3.tgz
+    version: 0.0.3
+  - apiVersion: v2
+    appVersion: 0.0.1
+    created: "2024-09-06T18:37:42.1765917+02:00"
     description: A Base chart for spring boot applications
     digest: 4f086aa23b4887a179c0492d5ac5b341d271fece704c4c6f4b5cffa8add809ce
     kubeVersion: '>=1.15.3'
@@ -14,7 +25,7 @@ entries:
     version: 0.0.2
   - apiVersion: v2
     appVersion: 0.0.1
-    created: "2024-09-06T18:33:47.7275758+02:00"
+    created: "2024-09-06T18:37:42.1760429+02:00"
     description: A Base chart for spring boot applications
     digest: e2cec6d9ce1d9a9ab06bd32b841b8413435c41c934ad95490ab8cde28ec5ec45
     kubeVersion: '>=1.15.3'
@@ -23,4 +34,4 @@ entries:
     urls:
     - base-chart-0.0.1.tgz
     version: 0.0.1
-generated: "2024-09-06T18:33:47.726887+02:00"
+generated: "2024-09-06T18:37:42.1749928+02:00"
