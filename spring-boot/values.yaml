@@ -1,0 +1,57 @@
+global:
+#  registry url only this part
+  dockerRegistryUrl: ""
+#  image name
+  image:
+# image version
+  imageVersion:
+  namespace:
+  hpa:
+    # flag to enable disable hpa for more info look at hpa yaml file
+    enabled: "false"
+  datasource:
+    migration:
+      # flag to enable disable datasource migration hook for more info look at migration hook file
+      enabled: "false"
+  application:
+    name:
+    port: 8080
+    labels: {}
+    replicaCount: 1
+    annotations: {}
+    # ingress configured by default to override first path (prefix) and proxy to target path
+    ingress:
+      rewriteTarget: /$2
+      targetPath:
+    prometheus:
+      actuatorPath: /actuator/prometheus
+      scrape: true
+      actuatorPort: 8081
+    deployment:
+      livenessProbe:
+        httpGet:
+          path: /actuator/health/liveness
+          port: ahttp
+          scheme: HTTP
+        initialDelaySeconds: 0
+        timeoutSeconds: 10
+        periodSeconds: 20
+      readinessProbe:
+        httpGet:
+          path: /actuator/health/readiness
+          port: ahttp
+          scheme: HTTP
+        initialDelaySeconds: 10
+        timeoutSeconds: 10
+        periodSeconds: 30
+      configMapRefs: {}
+      secretRefs: {}
+    resources:
+      java:
+        opts: "-XX:InitialRAMPercentage=50.0 -XX:MaxRAMPercentage=70.0 -XX:+ExitOnOutOfMemoryError"
+      requests:
+        memory: 256Mi
+        cpu: 1000m
+      limits:
+        memory: 256Mi
+        cpu: 1000m

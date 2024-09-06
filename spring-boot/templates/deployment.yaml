@@ -1,0 +1,70 @@
+kind: Deployment
+apiVersion: apps/v1
+metadata:
+  name: {{.Values.global.application.name}}
+  namespace: {{.Values.global.namespace}}
+  labels:
+    app: {{.Values.global.application.name}}
+    {{- with .Values.global.application.annotations}}
+  annotations:
+    {{- toYaml . | nindent 8 }}
+    {{- end }}
+    deployment.kubernetes.io/revision: '1'
+
+spec:
+  replicas: {{.Values.global.application.replicaCount}}
+  selector:
+    matchLabels:
+      app: {{.Values.global.application.name}}
+  template:
+    metadata:
+      labels:
+        app: {{.Values.global.application.name}}
+      annotations:
+        prometheus.io/path: {{.Values.global.application.prometheus.actuatorPath}}
+        prometheus.io/port: "{{ .Values.global.application.prometheus.actuatorPort }}"
+        prometheus.io/scrape: "{{ .Values.global.application.prometheus.scrape }}"
+    spec:
+      serviceAccountName: {{.Values.global.application.name}}
+      containers:
+        - name: {{.Values.global.application.name}}
+          image: "{{ $.Values.global.dockerRegistryUrl}}/{{.Values.global.image}}:{{.Values.global.imageVersion}}"
+          imagePullPolicy: Always
+          resources:
+            requests:
+              memory: {{ .Values.global.application.resources.requests.memory }}
+              cpu: {{.Values.global.application.resources.requests.cpu}}
+            limits:
+              memory: {{ .Values.global.application.resources.limits.memory }}
+              cpu: {{.Values.global.application.resources.limits.cpu}}
+          env:
+            - name: JAVA_TOOL_OPTIONS
+              value: {{ .Values.global.application.resources.java.opts }}
+            - name: SERVER_PORT
+              value: "{{.Values.global.application.port}}"
+            - name: MANAGEMENT_SERVER_PORT
+              value: "{{.Values.global.application.prometheus.actuatorPort}}"
+          ports:
+            - name: http
+              containerPort: {{.Values.global.application.port}}
+              protocol: TCP
+            - name: ahttp
+              containerPort: {{.Values.global.application.prometheus.actuatorPort}}
+              protocol: TCP
+          envFrom:
+            {{- range .Values.global.application.deployment.configMapRefs }}
+            - configMapRef:
+                name: {{ . }}
+            {{- end }}
+            {{- range .Values.global.application.deployment.secretRefs }}
+             - secretRef:
+                name: {{ . }}
+            {{- end }}
+          livenessProbe:
+            {{- toYaml .Values.global.application.deployment.livenessProbe | nindent 12 }}
+          readinessProbe:
+            {{- toYaml .Values.global.application.deployment.readinessProbe | nindent 12 }}
+
+      restartPolicy: Always
+
+

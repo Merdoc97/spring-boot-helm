@@ -1,0 +1,28 @@
+{{if eq .Values.global.datasource.migration.enabled "true"}}
+apiVersion: v1
+kind: Pod
+metadata:
+  name: {{.Values.global.application.name}}-db-hook
+  annotations:
+    "helm.sh/hook": "pre-install,pre-upgrade"
+    "helm.sh/hook-weight": "-5"
+    "helm.sh/hook-delete-policy": "hook-succeeded"
+
+spec:
+  containers:
+    - name: hook-container
+      image: "{{ $.Values.global.datasource.migration.image}}"
+      imagePullPolicy: IfNotPresent
+      envFrom:
+        {{- range .Values.global.datasource.migration.secretRefs }}
+        - secretRef:
+            name: {{.}}
+            {{end}}
+        {{- range .Values.global.datasource.migration.configMapRefs }}
+        - configMapRef:
+            name: {{ . }}
+        {{- end }}
+  restartPolicy: Never
+
+  terminationGracePeriodSeconds: 0
+ {{end}}
