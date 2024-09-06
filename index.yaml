@@ -1,3 +1,15 @@
 apiVersion: v1
-entries: {}
-generated: "2024-09-06T16:41:03.9148824+02:00"
+entries:
+  base-chart:
+  - apiVersion: v2
+    appVersion: 0.0.1
+    created: "2024-09-06T17:22:34.4669593+02:00"
+    description: A Base chart for spring boot applications
+    digest: e2cec6d9ce1d9a9ab06bd32b841b8413435c41c934ad95490ab8cde28ec5ec45
+    kubeVersion: '>=1.15.3'
+    name: base-chart
+    type: application
+    urls:
+    - base-chart-0.0.1.tgz
+    version: 0.0.1
+generated: "2024-09-06T17:22:34.466435+02:00"
