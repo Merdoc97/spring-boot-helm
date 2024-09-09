@@ -35,6 +35,13 @@ global:
     ingress:
       rewriteTarget: /$2
       targetPath:
+      annotations:
+        #base retry for all sprig controllers
+        nginx.ingress.kubernetes.io/proxy-next-upstream: "error timeout http_502 http_503 http_504"
+        nginx.ingress.kubernetes.io/proxy-next-upstream-tries: "3"
+      host:
+        enabled: "false"
+        value: "localhost"
     prometheus:
       actuatorPath: /actuator/prometheus
       scrape: true
