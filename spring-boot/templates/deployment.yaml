@@ -29,6 +29,10 @@ spec:
       containers:
         - name: {{.Values.global.application.name}}
           image: "{{ $.Values.global.dockerRegistryUrl}}/{{.Values.global.image}}:{{.Values.global.imageVersion}}"
+          {{- with .Values.global.application.volumeMounts}}
+          volumeMounts:
+            {{- toYaml . | nindent 12 }}
+            {{- end }}
           imagePullPolicy: Always
           resources:
             requests:
@@ -57,14 +61,17 @@ spec:
                 name: {{ . }}
             {{- end }}
             {{- range .Values.global.application.deployment.secretRefs }}
-             - secretRef:
+            - secretRef:
                 name: {{ . }}
             {{- end }}
           livenessProbe:
             {{- toYaml .Values.global.application.deployment.livenessProbe | nindent 12 }}
           readinessProbe:
             {{- toYaml .Values.global.application.deployment.readinessProbe | nindent 12 }}
-
+      {{- with .Values.global.application.volumes}}
+      volumes:
+        {{- toYaml .| nindent 8 }}
+        {{end}}
       restartPolicy: Always
 
 
