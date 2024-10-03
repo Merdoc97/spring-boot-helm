@@ -3,6 +3,8 @@ global:
   dockerRegistryUrl: ""
 #  image name
   image:
+# image version
+  imageVersion:
   namespace:
   hpa:
     # flag to enable disable hpa for more info look at hpa yaml file

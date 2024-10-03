@@ -28,7 +28,7 @@ spec:
       serviceAccountName: {{.Values.global.application.name}}
       containers:
         - name: {{.Values.global.application.name}}
-          image: "{{ $.Values.global.dockerRegistryUrl}}/{{.Values.global.image}}:{{.Chart.AppVersion}}"
+          image: "{{ $.Values.global.dockerRegistryUrl}}/{{.Values.global.image}}:{{.Values.global.imageVersion}}"
           {{- with .Values.global.application.volumeMounts}}
           volumeMounts:
             {{- toYaml . | nindent 12 }}
