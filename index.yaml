@@ -3,7 +3,18 @@ entries:
   base-chart:
   - apiVersion: v2
     appVersion: 0.0.1
-    created: "2024-10-03T17:15:31.0039444+02:00"
+    created: "2024-10-03T17:22:06.461737+02:00"
+    description: A Base chart for spring boot applications
+    digest: f6033d278bf539548c071031fffb737fdd9e701c084feaa08de9a86594528f7e
+    kubeVersion: '>=1.15.3'
+    name: base-chart
+    type: application
+    urls:
+    - base-chart-0.0.6.tgz
+    version: 0.0.6
+  - apiVersion: v2
+    appVersion: 0.0.1
+    created: "2024-10-03T17:22:06.4611753+02:00"
     description: A Base chart for spring boot applications
     digest: 4da4ca29d58db3b73f1a512d2f40547b89f061988f1ade67a59d99f252ed65f0
     kubeVersion: '>=1.15.3'
@@ -14,7 +25,7 @@ entries:
     version: 0.0.5
   - apiVersion: v2
     appVersion: 0.0.1
-    created: "2024-10-03T17:15:31.0033949+02:00"
+    created: "2024-10-03T17:22:06.4611753+02:00"
     description: A Base chart for spring boot applications
     digest: c81eaa8e13c8070143577aca784ea54a92df4a3883d8a446bb6f5e6c52061cc1
     kubeVersion: '>=1.15.3'
@@ -25,7 +36,7 @@ entries:
     version: 0.0.4
   - apiVersion: v2
     appVersion: 0.0.1
-    created: "2024-10-03T17:15:31.0033949+02:00"
+    created: "2024-10-03T17:22:06.4606634+02:00"
     description: A Base chart for spring boot applications
     digest: bcc9054483cf8baa69f79bb78e5a5fc516bbc0b116fc35fb94f178ba93de32c6
     kubeVersion: '>=1.15.3'
@@ -36,7 +47,7 @@ entries:
     version: 0.0.3
   - apiVersion: v2
     appVersion: 0.0.1
-    created: "2024-10-03T17:15:31.0028502+02:00"
+    created: "2024-10-03T17:22:06.460558+02:00"
     description: A Base chart for spring boot applications
     digest: 4f086aa23b4887a179c0492d5ac5b341d271fece704c4c6f4b5cffa8add809ce
     kubeVersion: '>=1.15.3'
@@ -47,7 +58,7 @@ entries:
     version: 0.0.2
   - apiVersion: v2
     appVersion: 0.0.1
-    created: "2024-10-03T17:15:31.0023057+02:00"
+    created: "2024-10-03T17:22:06.4600454+02:00"
     description: A Base chart for spring boot applications
     digest: e2cec6d9ce1d9a9ab06bd32b841b8413435c41c934ad95490ab8cde28ec5ec45
     kubeVersion: '>=1.15.3'
@@ -56,4 +67,4 @@ entries:
     urls:
     - base-chart-0.0.1.tgz
     version: 0.0.1
-generated: "2024-10-03T17:15:30.9993204+02:00"
+generated: "2024-10-03T17:22:06.4593817+02:00"
