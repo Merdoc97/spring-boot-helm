@@ -16,6 +16,11 @@ spec:
   selector:
     matchLabels:
       app: {{.Values.global.application.name}}
+  {{- with .Values.global.application.deployment.strategy}}
+  strategy:
+  {{- toYaml . | nindent 4}}
+  {{- end}}
+  minReadySeconds: {{.Values.global.application.deployment.minReadySeconds}}
   template:
     metadata:
       labels:
@@ -33,7 +38,7 @@ spec:
           volumeMounts:
             {{- toYaml . | nindent 12 }}
             {{- end }}
-          imagePullPolicy: Always
+          imagePullPolicy: IfNotPresent
           resources:
             requests:
               memory: {{ .Values.global.application.resources.requests.memory }}

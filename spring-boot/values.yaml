@@ -47,6 +47,13 @@ global:
       scrape: true
       actuatorPort: 8081
     deployment:
+# uncommit if strategy deployment are needed
+#      strategy:
+#        type: RollingUpdate
+#        rollingUpdate:
+#          maxUnavailable: 25%
+#          maxSurge: 25%
+      minReadySeconds: 20
       livenessProbe:
         httpGet:
           path: /actuator/health/liveness
